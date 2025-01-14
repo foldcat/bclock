@@ -23,8 +23,13 @@ grab_from_position :: proc(h, m, s: Bclock_Rep, row, col: int) -> u8 {
 print_clock :: proc(h, m, s: Bclock_Rep) {
 	for row in 0 ..= 3 {
 		for col in 0 ..= 5 {
-			//fmt.print(row, col, " ", sep="")
-			fmt.print(grab_from_position(h, m, s, row, col))
+			status := grab_from_position(h, m, s, row, col)
+			switch status {
+			case 1:
+				fmt.print("█")
+			case 0:
+				fmt.print("░")
+			}
 		}
 		fmt.println()
 	}
